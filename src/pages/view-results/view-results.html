@@ -1,0 +1,28 @@
+<ion-header>
+
+  <ion-navbar color="primary" padding>
+    <ion-title>Generated Draft Order</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let team of teams" class="animated fadeInLeft">
+      <ion-avatar item-start>
+        <ion-text-avatar color="primary-light">{{ team.draftOrder }}</ion-text-avatar>
+      </ion-avatar>
+      <h2>{{ team.name }}</h2>
+      <p>{{ team.owner }} <span style="color: #004ba0"><{{ team.email }}></span></p>
+    </ion-item>
+  </ion-list>
+
+  <ion-grid *ngIf="generationDone">
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button block icon-left color="danger" margin-top (click)="onEmailResults()">Email Results to Owners</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+</ion-content>

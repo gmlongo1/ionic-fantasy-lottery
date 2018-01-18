@@ -1,0 +1,66 @@
+<ion-header>
+
+  <ion-navbar color="primary" padding>
+    <ion-title>View League</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-item>
+      <ion-label floating color="primary">Season</ion-label>
+      <ion-input type="text" disabled [(ngModel)]="season"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+      <ion-label floating color="primary">League Name</ion-label>
+      <ion-input type="text" disabled [(ngModel)]="name"></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label floating color="primary">Owner</ion-label>
+      <ion-input type="text" disabled [(ngModel)]="owner"></ion-input>
+  </ion-item>
+
+  <ion-item>
+      <ion-label floating color="primary">Email</ion-label>
+      <ion-input type="text" disabled [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating color="primary">Weight</ion-label>
+    <ion-input type="text" disabled [(ngModel)]="weightText"></ion-input>
+  </ion-item>
+
+  <ion-item text-right>
+    <button ion-button clear icon-left (click)="onEditLeague()"><ion-icon name="create"></ion-icon>Edit</button>
+  </ion-item>
+
+  <ion-list *ngIf="teams.length > 0" style="margin-bottom: 0px">
+    <ion-list-header color="light">Teams</ion-list-header>
+    <ion-item *ngFor="let team of teams">
+      <ion-avatar item-start>
+        <ion-text-avatar color="primary-light">{{ team.previousFinish }}</ion-text-avatar>
+      </ion-avatar>
+      <h2>{{ team.name }}</h2>
+      <p>{{ team.owner }} <span style="color: #004ba0"><{{ team.email }}></span></p>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="teams.length <= 0" style="margin-bottom: 0px">
+    <ion-list-header color="light">Teams</ion-list-header>
+    <ion-item>No teams available</ion-item>
+  </ion-list>
+  <ion-item text-right>
+    <button ion-button clear icon-left (click)="onEditTeams()"><ion-icon name="create"></ion-icon>Edit</button>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button block icon-left color="danger" [disabled]="teams.length <= 0" margin-top (click)="onGenerateOrder()">Generate Draft Order</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+   
+</ion-content>

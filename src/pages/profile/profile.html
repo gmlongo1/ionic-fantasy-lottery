@@ -1,0 +1,27 @@
+<ion-header>
+
+  <ion-navbar color="primary" padding>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <ion-item *ngIf="user.displayName">
+        <ion-label color="primary" floating>Display Name</ion-label>
+        <ion-input [(ngModel)]="user.displayName" disabled></ion-input>
+      </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Email</ion-label>
+      <ion-input [(ngModel)]="user.email" disabled></ion-input>
+    </ion-item>
+
+    <ion-grid>
+        <ion-row>
+          <ion-col col-12 text-center>
+            <button ion-button (click)="onSignout()" margin-top clear>Sign out</button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

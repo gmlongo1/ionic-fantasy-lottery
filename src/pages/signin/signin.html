@@ -1,0 +1,61 @@
+<!--
+  Generated template for the SigninPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center no-padding>
+        <img src="assets/imgs/logo.png" style="width:190px; height: 190px">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <h1 style="margin: 0px; color: #004ba0;">
+        Fantasy Draft Lottery
+        </h1>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit(signinForm.value)">
+    <ion-item>
+      <ion-label color="primary" floating>Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="signinForm.controls.email.hasError('required') && signinForm.controls.email.touched">
+        <p style="color: red">Email is required</p>
+      </ion-item>
+    <ion-item>
+      <ion-label color="primary" floating>Password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item no-lines *ngIf="signinForm.controls.password.hasError('required') && signinForm.controls.password.touched">
+      <p style="color: red">Password is required</p>
+    </ion-item>
+    
+    <button ion-button block margin-top type="submit" [disabled]="!signinForm.valid">Sign in</button>
+
+  </form>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 text-center>
+        Or sign in with one of the following:
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <button ion-button icon-only (click)="onGoogleSignin()" clear title="Google"><ion-icon name="logo-google" style="color: red"></ion-icon></button>
+        <button ion-button icon-only (click)="onFacebookSignin()" clear title="Facebook"><ion-icon name="logo-facebook" style="color: #3b5998"></ion-icon></button>
+        <button ion-button icon-only (click)="onTwitterSignin()" clear title="Twitter"><ion-icon name="logo-twitter" style="color: #00aced"></ion-icon></button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 text-center no-padding>
+          <button ion-button clear (click)="onSignup()" no-padding no-margin>Sign Up For Fantasy Draft Lottery</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,14 +1,56 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
-</ion-content>
+<ion-content>
+  <ion-grid style="background-color: #1565C0; color: #ffffff">
+    <ion-row>
+      <ion-col col-12 text-center no-padding>
+        <ion-icon *ngIf="!user.photoURL" name="contact" style="font-size: 190px" (click)="onAvatarClicked()"></ion-icon>
+        <img *ngIf="user.photoURL" [src]="user.photoURL" style="width:120px; height:120px; border-radius: 50%; margin:10px;" (click)="onAvatarClicked()">
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <h1 style="margin: 0px">
+        {{ user.displayName }}
+        </h1>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12 text-center>
+        <h6 style="margin-top: 0px; font-weight: normal">
+        {{ user.email }}
+        </h6>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <ion-list *ngIf="leagues.length > 0">
+    <ion-list-header color="light">Leagues</ion-list-header>
+    <ion-item-sliding *ngFor="let league of leagues" #slidingItem>
+      <ion-item (click)="onLeagueClicked(league)">
+        <ion-avatar item-start>
+          <ion-text-avatar color="primary-light">{{ league.name[0] }}</ion-text-avatar>
+        </ion-avatar>
+        <h2>{{ league.name }}</h2>
+        <p>{{ league.owner }} <span style="color: #004ba0"><{{ league.email }}></span></p>
+        <ion-note item-end>{{ league.season }}</ion-note>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button icon-start color="primary" (click)="onLeagueClone(league, slidingItem)">
+          <ion-icon name="copy"></ion-icon>
+          Clone
+        </button>
+        <button ion-button icon-start color="danger" (click)="onLeagueDelete(league)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-list *ngIf="leagues.length <= 0">
+    <ion-list-header color="light">Leagues</ion-list-header>
+    <ion-item>No leagues available</ion-item>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" style="color: #ffffff;" (click)="onLeagueAdd()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>

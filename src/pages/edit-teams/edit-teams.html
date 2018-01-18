@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar color="primary" padding>
+    <ion-title>Edit Teams</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list *ngIf="teams.length > 0" style="margin-bottom: 0px; border-top: 0px" reorder="true" (ionItemReorder)="reorderItems($event)">
+    <ion-item-sliding *ngFor="let team of teams">
+      <ion-item (click)="onTeamClicked(team)">
+        <ion-avatar item-start>
+          <ion-text-avatar color="primary-light">{{ team.previousFinish }}</ion-text-avatar>
+        </ion-avatar>
+        <h2>{{ team.name }}</h2>
+        <p>{{ team.owner }} <span style="color: #004ba0"><{{ team.email }}></span></p>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button icon-start color="danger" (click)="onTeamDelete(team)">
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-list *ngIf="teams.length <= 0" style="margin-bottom: 0px">
+    <ion-item>No teams available</ion-item>
+  </ion-list>
+  <ion-fab right bottom>
+    <button ion-fab color="secondary" style="color: #ffffff;" (click)="onTeamAdd()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>

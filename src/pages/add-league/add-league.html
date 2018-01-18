@@ -1,0 +1,55 @@
+<ion-header>
+
+  <ion-navbar color="primary" padding>
+    <ion-title>Add League</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="addLeagueForm" (ngSubmit)="onSubmit(addLeagueForm.value)">
+        <ion-item>
+            <ion-label floating color="primary">Season</ion-label>
+            <ion-input formControlName="season" type="text" maxlength="4"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="addLeagueForm.controls.season.hasError('required') && addLeagueForm.controls.season.touched">
+            <p style="color: red">Season is required</p>
+        </ion-item>
+  
+        <ion-item>
+            <ion-label floating color="primary">League Name</ion-label>
+            <ion-input formControlName="leagueName" type="text"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="addLeagueForm.controls.leagueName.hasError('required') && addLeagueForm.controls.leagueName.touched">
+            <p style="color: red">League Name is required</p>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating color="primary">Owner</ion-label>
+            <ion-input formControlName="owner" type="text"></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="addLeagueForm.controls.owner.hasError('required') && addLeagueForm.controls.owner.touched">
+            <p style="color: red">Owner is required</p>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating color="primary">Email</ion-label>
+            <ion-input formControlName="email" type="email" email></ion-input>
+        </ion-item>
+        <ion-item no-lines *ngIf="addLeagueForm.controls.email.hasError('required') && addLeagueForm.controls.email.touched">
+            <p style="color: red">Email is required</p>
+        </ion-item>
+        <ion-item no-lines *ngIf="!addLeagueForm.controls.email.hasError('required') && addLeagueForm.controls.email.hasError('email') && addLeagueForm.controls.email.touched">
+            <p style="color: red">Email format is invalid</p>
+        </ion-item>
+
+        <ion-item>
+            <ion-label floating color="primary">Weighting</ion-label>
+            <ion-select formControlName="weight">
+                <ion-option *ngFor="let option of weightOptions" [value]="option">{{ option.text }}</ion-option>
+            </ion-select>
+        </ion-item>
+ 
+        <button ion-button block margin-top color="primary" [disabled]="!addLeagueForm.valid" type="submit">Add League</button>        
+    </form>
+</ion-content>
